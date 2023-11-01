@@ -22,14 +22,14 @@ Plane plane3 = new Plane
 };
 
 Console.WriteLine("************************************ Testing Signature Polymorphisme ****************************** ");
-Passenger p1 = new Passenger { FirstName = "steave", LastName = "jobs", EmailAddress = "steeve.jobs@gmail.com", BirthDate = new DateTime(1955, 01, 01) };
+Passenger p1 = new Passenger { FullName = new FullName {FirstName = "steave", LastName = "jobs"}, EmailAddress = "steeve.jobs@gmail.com", BirthDate = new DateTime(1955, 01, 01) };
 Console.WriteLine("La méthode CheckProfile:");
 Console.WriteLine(p1.CheckProfile("steave", "jobs"));
 Console.WriteLine(p1.CheckProfile("steave", "jobs", "steeve.jobs@gmail.com"));
 
 Console.WriteLine("************************************ Testing Inheritance Polymorphisme ****************************** ");
-Staff s1 = new Staff { FirstName = "Bill", LastName = "Gates", EmailAddress = "Bill.gates@gmail.com", BirthDate = new DateTime(1945, 01, 01), EmployementDate = new DateTime(1990, 01, 01), Salary = 99999 };
-Traveller t1 = new Traveller { FirstName = "Mark", LastName = "Zuckerburg", EmailAddress = "Mark.Zuckerburg@gmail.com", BirthDate = new DateTime(1980, 01, 01), HealthInformation = "Some troubles", Nationality = "American" };
+Staff s1 = new Staff { FullName = new FullName{ FirstName = "Bill", LastName = "Gates"}, EmailAddress = "Bill.gates@gmail.com", BirthDate = new DateTime(1945, 01, 01), EmployementDate = new DateTime(1990, 01, 01), Salary = 99999 };
+Traveller t1 = new Traveller { FullName = new FullName{ FirstName = "Mark", LastName = "Zuckerburg"}, EmailAddress = "Mark.Zuckerburg@gmail.com", BirthDate = new DateTime(1980, 01, 01), HealthInformation = "Some troubles", Nationality = "American" };
 Console.WriteLine("La méthode PassengerType p1:");
 p1.PassengerType();
 Console.WriteLine("La méthode PassengerType s1:");

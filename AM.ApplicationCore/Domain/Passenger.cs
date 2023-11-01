@@ -14,8 +14,7 @@ namespace AM.ApplicationCore.Domain
         [StringLength(7)]
         public string PassportNumber { get; set; }
         [MaxLength(25,ErrorMessage ="Longueur maximale est 25"),MinLength(3,ErrorMessage ="Longueur minimale est 3")]
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public FullName FullName { get; set; }
         [Display(Name ="Date of birth")]
         [DataType(DataType.Date)]
         public DateTime BirthDate { get; set; }
@@ -30,7 +29,7 @@ namespace AM.ApplicationCore.Domain
         //TP1-Q6: Réimplémenter la méthode ToString()
         public override string ToString()
         {
-            return "FirstName: " + FirstName + " LastName: " + LastName + " date of Birth: "+ BirthDate;
+            return "FirstName: " + FullName.FirstName + " LastName: " + FullName.LastName + " date of Birth: "+ BirthDate;
         }
 
         //TP1-Q10: Créer les trois méthodes bool CheckProfile(...)
@@ -47,9 +46,9 @@ namespace AM.ApplicationCore.Domain
         public bool CheckProfile(string firstName, string lastName, string email = null)
         {
             if (email != null)
-                return FirstName == firstName && LastName == lastName && EmailAddress == email;
+                return FullName.FirstName == firstName && FullName.LastName == lastName && EmailAddress == email;
             else
-                return FirstName == firstName && LastName == lastName;
+                return FullName.FirstName == firstName && FullName.LastName == lastName;
         }
 
         //TP1-Q11.a: Implémenter la méthode PassengerType()
