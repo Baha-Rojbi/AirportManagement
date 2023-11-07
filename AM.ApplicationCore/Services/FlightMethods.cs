@@ -151,21 +151,21 @@ namespace AM.ApplicationCore.Services
 
         }
 
-        public IEnumerable<Passenger> SeniorTravellers(Flight flight)
-        {
-            //var requete = from f in flight.Passengers
-            //                       where f is Traveller
-            //                       orderby f.BirthDate ascending
-            //                       select f ;
+        //public IEnumerable<Passenger> SeniorTravellers(Flight flight)
+        //{
+        //    //var requete = from f in flight.Passengers
+        //    //                       where f is Traveller
+        //    //                       orderby f.BirthDate ascending
+        //    //                       select f ;
 
 
-            /*var requete = from p in flight.Passengers.OfType<Traveller>()
-                          orderby p.BirthDate ascending
-                          select p;
+        //    /*var requete = from p in flight.Passengers.OfType<Traveller>()
+        //                  orderby p.BirthDate ascending
+        //                  select p;
 
-            return requete.Take(3);*/
-             return flight.Passengers.Where(p=> p is Traveller).OrderBy(t=>t.BirthDate).Take(3);
-        }
+        //    return requete.Take(3);*/
+        //     return flight.Passengers.Where(p=> p is Traveller).OrderBy(t=>t.BirthDate).Take(3);
+        //}
 
         public IEnumerable<IGrouping<string, Flight>> DestinationGroupedFlights()
         {

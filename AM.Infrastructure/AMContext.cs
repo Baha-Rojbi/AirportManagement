@@ -14,6 +14,7 @@ namespace AM.Infrastructure
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=BahaRojbi;Integrated Security=true");
             base.OnConfiguring(optionsBuilder);
         }
@@ -27,6 +28,10 @@ namespace AM.Infrastructure
             modelBuilder.ApplyConfiguration(new PlaneConfiguration());
             modelBuilder.ApplyConfiguration(new FlightConfiguration());
             modelBuilder.ApplyConfiguration(new PassengerConfiguration());
+            modelBuilder.Entity<Staff>().ToTable("Staffs");
+            modelBuilder.Entity<Traveller>().ToTable("Travellers");
+            modelBuilder.ApplyConfiguration(new TicketConfiguration());
+
         }
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
         {

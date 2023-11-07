@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AM.Infrastructure.Configurations
 {
-    internal class PassengerConfiguration :IEntityTypeConfiguration<Passenger>
+    public class PassengerConfiguration :IEntityTypeConfiguration<Passenger>
     {
         public void Configure(EntityTypeBuilder<Passenger> builder)
         {
@@ -18,6 +18,10 @@ namespace AM.Infrastructure.Configurations
                     f.Property(n => n.FirstName).HasColumnName("PassFirstName").HasMaxLength(30);
                     f.Property(l => l.LastName).HasColumnName("PassLastName").IsRequired();
                 });
+            //builder.HasDiscriminator<String>("isTraveller")
+            //    .HasValue<Passenger>("0")
+            //    .HasValue<Traveller>("1")
+            //    .HasValue<Staff>("2");
         }
     }
 }

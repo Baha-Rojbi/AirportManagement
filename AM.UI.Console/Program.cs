@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using AM.ApplicationCore.Domain;
 using AM.ApplicationCore.Services;
+using AM.Infrastructure;
 
 //Console.WriteLine("Hello, World!");
 
@@ -52,11 +53,19 @@ foreach (var item in fm.OrderedDurationFlights())
 {
     Console.WriteLine(item);
 }
-foreach (var item in fm.SeniorTravellers(TestData.flight1))
-{
-    Console.WriteLine(item);
-}
+//foreach (var item in fm.SeniorTravellers(TestData.flight1))
+//{
+//    Console.WriteLine(item);
+//}
 Console.WriteLine("delegué");
 fm.FlightDetailsDel(TestData.BoingPlane);
 Console.WriteLine("delegué 2");
 Console.WriteLine( fm.DurationAverageDel("Madrid"));
+
+
+AMContext context =new AMContext();
+//context.Planes.Add(TestData.BoingPlane);
+
+context.Flights.Add(TestData.flight3);
+context.SaveChanges();
+Console.WriteLine(context.Flights.First().Plane.Capacity);
