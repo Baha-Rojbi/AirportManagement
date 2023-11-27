@@ -9,5 +9,6 @@ namespace AM.ApplicationCore.Interfaces
 {
     public interface IServicePassenger:IService<Passenger>
     {
+       
     }
 }
