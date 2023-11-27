@@ -34,5 +34,17 @@ namespace AM.ApplicationCore.Services
         {
             return GetMany(f=>f.FlightDate>=startDate && f.FlightDate<=endDate).SelectMany(f=>f.Tickets).Select(t=>t.MyPassenger).OfType<Traveller>().Count();
         }
+
+        public void GroupTraveller(DateTime startDate, DateTime endDate)
+        {
+           var query= GetMany(f => f.FlightDate >= startDate && f.FlightDate <= endDate).SelectMany(f => f.Tickets)
+                .GroupBy(t => t.MyFlight.FlightDate)
+                .Select(t => new {group=t.Key,nbre=t.Count()});
+            foreach (var item in query)
+            {
+                Console.WriteLine("Date de vol = " + item.group + " nombre de passenger = " + item.nbre);
+            }
+           
+        }
     }
 }
