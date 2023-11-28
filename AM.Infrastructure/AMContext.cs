@@ -15,7 +15,7 @@ namespace AM.Infrastructure
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=BahaRojbi;Integrated Security=true");
+            optionsBuilder.UseSqlServer(@"Data Source=(localdb)\mssqllocaldb;Initial Catalog=BahaRojbi;Integrated Security=true;MultipleActiveResultSets=True");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Flight> Flights { get; set; }
