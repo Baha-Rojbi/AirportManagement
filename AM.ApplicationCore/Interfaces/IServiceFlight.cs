@@ -18,5 +18,6 @@ namespace AM.ApplicationCore.Interfaces
         // entre deux dates données.
         int NbVoyageurByDates(DateTime startDate, DateTime endDate);
         public void GroupTraveller(DateTime startDate, DateTime endDate);
+        public IEnumerable<Flight> SortFLights();
     }
 }

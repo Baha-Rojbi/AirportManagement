@@ -46,5 +46,10 @@ namespace AM.ApplicationCore.Services
             }
            
         }
+
+        public IEnumerable<Flight> SortFLights()
+        {
+            return GetAll().OrderByDescending(f => f.FlightDate);
+        }
     }
 }

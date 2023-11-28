@@ -18,9 +18,16 @@ namespace AM.UI.Web.Controllers
             this.servicePlane = servicePlane;
         }
         // GET: FlightController
-        public ActionResult Index()
+        public ActionResult Index(DateTime? dateDepart)
         {
-            return View(serviceFlight.GetAll());
+            if (dateDepart == null)
+            {
+                return View(serviceFlight.GetAll().ToList());
+            }
+            else
+            {
+                return View(serviceFlight.GetMany(f => f.FlightDate == dateDepart).ToList());
+            }
         }
 
         // GET: FlightController/Details/5
@@ -93,6 +100,11 @@ namespace AM.UI.Web.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult Sort()
+        {
+            return View("Index", serviceFlight.SortFLights());
         }
     }
 }
