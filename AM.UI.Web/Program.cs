@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<DbContext, AMContext>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IServiceFlight, ServiceFlight>();
+builder.Services.AddScoped<IServicePlane, ServicePlane>();
 builder.Services.AddSingleton<Type>(t => typeof(GenericRepository<>));
 
 var app = builder.Build();

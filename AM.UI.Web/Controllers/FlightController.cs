@@ -1,16 +1,21 @@
-﻿using AM.ApplicationCore.Interfaces;
+﻿using AM.ApplicationCore.Domain;
+using AM.ApplicationCore.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace AM.UI.Web.Controllers
 {
     public class FlightController : Controller
     {
         IServiceFlight serviceFlight;
+        private IServicePlane servicePlane;
 
-        public FlightController(IServiceFlight serviceFlight)
+
+        public FlightController(IServiceFlight serviceFlight , IServicePlane servicePlane)
         {
             this.serviceFlight = serviceFlight;
+            this.servicePlane = servicePlane;
         }
         // GET: FlightController
         public ActionResult Index()
@@ -27,16 +32,19 @@ namespace AM.UI.Web.Controllers
         // GET: FlightController/Create
         public ActionResult Create()
         {
+            ViewBag.PlaneId = new SelectList(servicePlane.GetAll(),"PlaneId","PlaneId");
             return View();
         }
 
         // POST: FlightController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Flight flight)
         {
             try
             {
+                serviceFlight.Add(flight);
+                serviceFlight.Commit();
                 return RedirectToAction(nameof(Index));
             }
             catch
